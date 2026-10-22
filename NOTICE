@@ -4,9 +4,7 @@ Copyright 2026 Sowmiya Arumugam
 switchclock was developed as the selection engine of SvaVāk (https://github.com/sowmiyaa-arumugam/svavak), where it
 was first kept as packages/switchclock; this repository carries that history.
 
-switchclock computes the normal distribution function with @stdlib/math-base-special-erfc
-(https://github.com/stdlib-js/math-base-special-erfc), Copyright (c) 2016-2026 The Stdlib Authors, licensed under the
-Apache License, Version 2.0. Its erfc follows FreeBSD's msun s_erf.c, which carries this notice:
+switchclock's erfc (src/core/erfc.ts) is ported from FreeBSD's lib/msun/src/s_erf.c, which carries this notice:
 
   Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
 
