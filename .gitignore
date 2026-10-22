@@ -1,0 +1,16 @@
+# Ignore rules for switchclock, a subset of SvaVāk's
+
+# Environment files: nothing here needs one, and none is ever committed
+.env*
+*.env
+
+# Test coverage
+coverage/
+
+# Dependencies and Yarn 4 state (Yarn through Corepack, so no release is committed)
+node_modules/
+.pnp.*
+.yarn/
+
+# Logs
+*.log

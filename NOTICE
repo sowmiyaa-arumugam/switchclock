@@ -1,0 +1,5 @@
+switchclock
+Copyright 2026 Sowmiya Arumugam
+
+switchclock was developed as the selection engine of SvaVāk (https://github.com/sowmiyaa-arumugam/svavak), where it
+was first kept as packages/switchclock; this repository carries that history.

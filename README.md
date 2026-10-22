@@ -1,6 +1,7 @@
 # switchclock
 
-A Bayesian single-switch selection engine (plan §4.1), with a seeded synthetic user and simulator.
+A Bayesian single-switch selection engine, with a seeded synthetic user and simulator. It is the engine of
+[SvaVāk](https://github.com/sowmiyaa-arumugam/svavak), a single-switch AAC communicator for Fire TV.
 
 Each option has a small clock, and every clock turns with the same period T. To choose an option, the user
 presses the one switch when that option's hand points to noon. Each press updates a posterior over the options,
@@ -70,6 +71,17 @@ const r = scan.click(pressTimestampMs); // { accepted, posterior, committed }
 The package exports its TypeScript source directly, with no build step. Node 24 runs it through type stripping,
 which is why the source uses only erasable syntax and `.ts` import paths.
 
+## How SvaVāk uses it
+
+[SvaVāk](https://github.com/sowmiyaa-arumugam/svavak) keeps this engine as `packages/switchclock`, a Yarn workspace
+that its other parts import from source:
+
+- The Fire TV app runs a `ScanEngine` for every question: the highlight steps through the replies, the user's one
+  switch is the press, and the engine commits the reply or rescans the top two.
+- The server turns the model's candidate scores into priors with `priors()`, so the server and the TV agree on them.
+- The studio's virtual TV runs the TV app's own modules, and so the same engine, and shows its posterior after each
+  press.
+
 ## Gate K1 result
 
 Setup:
@@ -114,9 +126,12 @@ press.
 
 ## Develop
 
+Requirements: Node.js 24 with Corepack (Yarn 4.5).
+
 ```bash
-yarn workspace switchclock test       # Vitest with coverage gates (90% lines, 85% branches), then the Node smoke test
-yarn workspace switchclock typecheck  # strict tsc: engine without DOM or Node types, then the tests
+yarn install    # once: the dev dependencies (Yarn 4.5 through Corepack)
+yarn test       # Vitest with coverage gates (90% lines, 85% branches), then the Node smoke test
+yarn typecheck  # strict tsc: engine without DOM or Node types, then the tests
 ```
 
 The K1 and K1-scan tests print their measured values. When Vitest detects an AI coding agent it hides the console

@@ -6,6 +6,7 @@
   "author": "Sowmiya Arumugam",
   "private": true,
   "type": "module",
+  "packageManager": "yarn@4.5.0",
   "exports": {
     ".": "./src/index.ts",
     "./sim": "./sim/simulate.ts",
